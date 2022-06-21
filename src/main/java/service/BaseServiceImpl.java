@@ -17,10 +17,11 @@ public class BaseServiceImpl<T, ID, R extends BaseRepository<T, ID>> implements 
     @Override
     public void create(T t) {
         try {
-
+            repository.beginTransaction();
             repository.create(t);
-
+            repository.commitTransaction();
         }catch (Exception e){
+            repository.rollbackTransaction();
             throw e;
         }
     }

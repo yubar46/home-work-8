@@ -32,7 +32,7 @@ public class TurnoverServiceImpl extends BaseServiceImpl<Turnover,Integer, Turno
             BankAccount bankBranchAccount = ApplicationContext.getInstance().getBankAccountRepository().findByCustomerId(turnover.getSource().getBankBranch().getChief().getId()).get(0);
             bankBranchAccount.setAccountBalance(bankBranchAccount.getAccountBalance()+500);
             bankAccountRepository.update(bankBranchAccount);
-            create(turnover);
+            repository.create(turnover);
             repository.commitTransaction();
 
         }catch (Exception e){
