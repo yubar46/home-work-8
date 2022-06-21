@@ -11,7 +11,7 @@ public class CustomerPrintAccountsMenu implements Menu {
         List<BankAccount> bankAccountList = ApplicationContext.getInstance().getBankAccountRepository()
                 .findByCustomerId(ApplicationContext.getInstance().getBankAccount().getAccountOwner().getId());
 
-        for (BankAccount bankAccount:bankAccountList) {
+        for (BankAccount bankAccount : bankAccountList) {
             System.out.println(bankAccount);
         }
         return new CustomerInsideMenu();

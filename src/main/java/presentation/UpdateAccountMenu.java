@@ -13,17 +13,17 @@ public class UpdateAccountMenu implements Menu {
         Scanner console = new Scanner(System.in);
 
         System.out.println("enter account id");
-        Long id =console.nextLong();
+        Long id = console.nextLong();
         BankAccount bankAccount;
-        if (ApplicationContext.getInstance().getBankAccountService().read(id)!=null){
+        if (ApplicationContext.getInstance().getBankAccountService().read(id) != null) {
             bankAccount = ApplicationContext.getInstance().getBankAccountService().read(id);
 
-        }else{
+        } else {
             System.out.println("wrong id entered");
             return new PersonnelInsideMenu();
         }
         System.out.println("enter new account balance");
-        long amount= console.nextLong();
+        long amount = console.nextLong();
         bankAccount.setAccountBalance(amount);
         ApplicationContext.getInstance().getBankAccountService().update(bankAccount);
 

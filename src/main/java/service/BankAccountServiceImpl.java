@@ -4,14 +4,19 @@ package service;
 import domain.BankAccount;
 import domain.User;
 import repository.BankAccountRepository;
+import repository.BankCardRepository;
+import repository.UserRepository;
 
 public class BankAccountServiceImpl extends BaseServiceImpl<BankAccount,Long, BankAccountRepository> implements BankAccountService {
-       private final UserService userService;
+       private final UserRepository userRepository;
+       private final BankCardRepository bankCardRepository;
 
-    public BankAccountServiceImpl(BankAccountRepository repository, UserService userService) {
+
+    public BankAccountServiceImpl(BankAccountRepository repository, UserRepository userRepository, BankCardRepository bankCardRepository) {
         super(repository);
 
-        this.userService = userService;
+        this.userRepository = userRepository;
+        this.bankCardRepository = bankCardRepository;
     }
 
     @Override
@@ -29,7 +34,7 @@ public class BankAccountServiceImpl extends BaseServiceImpl<BankAccount,Long, Ba
     public void CreateAccount(User user, BankAccount bankAccount) {
         try {
             repository.beginTransaction();
-            userService.create(user);
+            userRepository.create(user);
             repository.create(bankAccount);
             repository.commitTransaction();
         }catch (Exception e){
@@ -38,7 +43,22 @@ public class BankAccountServiceImpl extends BaseServiceImpl<BankAccount,Long, Ba
         }
 
     }
+    @Override
+    public void delete(Long id) {
 
+        try {
+            repository.beginTransaction();
+            repository.delete(id);
+            BankAccount bankAccount= repository.find(id);
+
+            bankCardRepository.delete(bankAccount.getCart().getId());
+            repository.commitTransaction();
+        }catch (Exception e){
+            repository.getTransaction().rollback();
+            throw  e;
+        }
+
+    }
 
 
 }

@@ -19,25 +19,24 @@ public class CustomerTurnoversViewMenu implements Menu {
         int month = console.nextInt();
         System.out.println("day?");
         int day = console.nextInt();
-        LocalDate turnoversStartDate =  LocalDate.of(year,month,day);
+        LocalDate turnoversStartDate = LocalDate.of(year, month, day);
 
         if (ApplicationContext.getInstance().getTurnoverRepository().viewTurnoversWithCustomDate
-                (ApplicationContext.getInstance().getBankAccount().getId(),turnoversStartDate)==null||
+                (ApplicationContext.getInstance().getBankAccount().getId(), turnoversStartDate) == null ||
                 ApplicationContext.getInstance().getTurnoverRepository().viewTurnoversWithCustomDate
-                        (ApplicationContext.getInstance().getBankAccount().getId(),turnoversStartDate).isEmpty()){
+                        (ApplicationContext.getInstance().getBankAccount().getId(), turnoversStartDate).isEmpty()) {
             System.out.println("you have not any turnover from this date");
 
-        }else {
+        } else {
             List<Turnover> turnovers = ApplicationContext.getInstance().getTurnoverRepository().viewTurnoversWithCustomDate
-                    (ApplicationContext.getInstance().getBankAccount().getId(),turnoversStartDate);
+                    (ApplicationContext.getInstance().getBankAccount().getId(), turnoversStartDate);
 
-            for (Turnover turnover:turnovers) {
+            for (Turnover turnover : turnovers) {
                 System.out.println(turnover);
 
             }
 
         }
-
 
 
         return new CustomerInsideMenu();

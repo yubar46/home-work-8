@@ -24,6 +24,7 @@ public class BaseServiceImpl<T, ID, R extends BaseRepository<T, ID>> implements 
             repository.rollbackTransaction();
             throw e;
         }
+
     }
 
     @Override

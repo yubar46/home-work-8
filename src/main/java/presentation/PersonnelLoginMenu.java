@@ -12,19 +12,18 @@ public class PersonnelLoginMenu implements Menu {
         Scanner console = new Scanner(System.in);
         Employee employee;
         boolean login = false;
-        while (!login){
+        while (!login) {
             System.out.println("enter your id");
             Integer id = console.nextInt();
             System.out.println("enter your password");
-            String password= console.next();
+            String password = console.next();
 
-            if (  ApplicationContext.getInstance().getEmployeeRepository().checkLogin(id,password)!=null){
-                employee =  ApplicationContext.getInstance().getEmployeeRepository().checkLogin(id,password);
+            if (ApplicationContext.getInstance().getEmployeeRepository().checkLogin(id, password) != null) {
+                employee = ApplicationContext.getInstance().getEmployeeRepository().checkLogin(id, password);
                 ApplicationContext.getInstance().setEmployee(employee);
-                login =true;
-            }else System.out.println("wrong user id or password , try again");
+                login = true;
+            } else System.out.println("wrong user id or password , try again");
         }
-
 
 
         return PersonnelInsideMenu::new;

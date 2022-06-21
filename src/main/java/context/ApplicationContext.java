@@ -29,7 +29,7 @@ public  class ApplicationContext {
     private  CustomerService customerService = new CustomerServiceImpl(customerRepository);
     private EmployeeService employeeService = new EmployeeServiceImpl(employeeRepository);
     private UserService userService = new UserServiceImpl(userRepository);
-    private BankAccountService bankAccountService = new BankAccountServiceImpl(bankAccountRepository, userService);
+    private BankAccountService bankAccountService = new BankAccountServiceImpl(bankAccountRepository, userRepository, bankCardRepository);
     private TurnoverService turnoverService = new TurnoverServiceImpl(turnoverRepository, bankAccountRepository);
 
     private Employee employee = new Employee();

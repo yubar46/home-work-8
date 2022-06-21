@@ -26,17 +26,17 @@ public class CreateAccountMenu implements Menu {
         System.out.println("your default password is 1111");
         newBankAccount.setBankBranch(ApplicationContext.getInstance().getEmployee().getBankBranch());
         newBankAccount.setAccountBalance(amount);
-        newBankAccount.setPassword("0000");
+        newBankAccount.setPassword("1111");
         newBankAccount.setAccountOwner(newUser);
         BankCart bankCart = new BankCart();
         System.out.println("enter Second password");
 
-        String secondPassword= console.next();
+        String secondPassword = console.next();
         bankCart.setSecondPassword(secondPassword);
         Integer cvv2 = random.nextInt((9999 - 100) + 1) + 10;
         bankCart.setCvv2(cvv2);
         newBankAccount.setCart(bankCart);
-        ApplicationContext.getInstance().getBankAccountService().CreateAccount(newUser,newBankAccount);
+        ApplicationContext.getInstance().getBankAccountService().CreateAccount(newUser, newBankAccount);
 
         return new PersonnelInsideMenu();
     }

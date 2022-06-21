@@ -61,6 +61,7 @@ public abstract class BaseRepositoryImpl<T,ID> implements BaseRepository<T,ID> {
         if (!entityManager.getTransaction().isActive()){
             entityManager.getTransaction().begin();
         }
+
     }
 
     @Override
